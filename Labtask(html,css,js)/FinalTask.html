@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My Portfolio</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 30px;
+        }
+
+        #switchBtn {
+            padding: 10px 20px;
+        }
+
+        a {
+            margin: 15px;
+            text-decoration: none;
+        }
+
+        #projects,
+        #contact {
+            display: none;
+        }
+
+        input,
+        textarea {
+            width: 250px;
+            padding: 5px;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <h1 id="pageTitle">My Portfolio</h1>
+
+    <h2 id="greeting"></h2>
+
+    <button id="switchBtn" onclick="toggleMode()">Switch Mode</button>
+
+    <br><br>
+
+    <a href="#" onclick="showAbout()">About</a>
+    <a href="#" onclick="showProjects()">Projects</a>
+    <a href="#" onclick="showContact()">Contact</a>
+
+    <hr>
+
+    <div id="about">
+        <h2>About Me</h2>
+        <p>Hello! I am Siam.</p>
+        <p>I am a CSE student at AIUB.</p>
+    </div>
+
+    <div id="projects">
+        <h2>Projects</h2>
+        <p>Portfolio Website</p>
+        <p>Student Management System</p>
+    </div>
+
+    <div id="contact">
+
+        <h2>Contact Me</h2>
+
+        <form onsubmit="return checkForm()">
+
+            Name <br>
+            <input type="text" id="name">
+            <br>
+            <span id="nameError"></span>
+
+            <br><br>
+
+            Email <br>
+            <input type="text" id="email">
+            <br>
+            <span id="emailError"></span>
+
+            <br><br>
+
+            Message <br>
+            <textarea id="message"></textarea>
+            <br>
+            <span id="messageError"></span>
+
+            <br><br>
+
+            <input type="submit" value="Submit">
+
+        </form>
+
+    </div>
+
+    <script>
+
+        var hour = new Date().getHours();
+
+        if (hour < 12) {
+            document.getElementById("greeting").innerHTML = "Good Morning";
+        }
+        else if (hour < 18) {
+            document.getElementById("greeting").innerHTML = "Good Afternoon";
+        }
+        else {
+            document.getElementById("greeting").innerHTML = "Good Evening";
+        }
+
+
+        function toggleMode() {
+
+            var body = document.body;
+            var title = document.getElementById("pageTitle");
+            var button = document.getElementById("switchBtn");
+
+            if (body.style.backgroundColor == "black") {
+
+                body.style.backgroundColor = "white";
+                body.style.color = "black";
+                title.innerHTML = "My Portfolio";
+                button.innerHTML = "Switch to Dark Mode";
+
+            }
+            else {
+
+                body.style.backgroundColor = "black";
+                body.style.color = "white";
+                title.innerHTML = "My Portfolio";
+                button.innerHTML = "Switch to Light Mode";
+
+            }
+        }
+
+
+        function showAbout() {
+
+            document.getElementById("about").style.display = "block";
+            document.getElementById("projects").style.display = "none";
+            document.getElementById("contact").style.display = "none";
+
+        }
+
+        function showProjects() {
+
+            document.getElementById("about").style.display = "none";
+            document.getElementById("projects").style.display = "block";
+            document.getElementById("contact").style.display = "none";
+
+        }
+
+        function showContact() {
+
+            document.getElementById("about").style.display = "none";
+            document.getElementById("projects").style.display = "none";
+            document.getElementById("contact").style.display = "block";
+
+        }
+
+
+        function checkForm() {
+
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+
+            document.getElementById("nameError").innerHTML = "";
+            document.getElementById("emailError").innerHTML = "";
+            document.getElementById("messageError").innerHTML = "";
+
+            if (name == "") {
+
+                document.getElementById("nameError").innerHTML = "Enter Name";
+                return false;
+
+            }
+
+            if (email == "") {
+
+                document.getElementById("emailError").innerHTML = "Enter Email";
+                return false;
+
+            }
+
+            if (message.length < 10) {
+
+                document.getElementById("messageError").innerHTML = "Minimum 10 Characters";
+                return false;
+
+            }
+
+            alert("Form Submitted");
+            return true;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
